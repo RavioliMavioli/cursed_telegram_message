@@ -1,0 +1,19 @@
+export const cursed_images = [
+  "https://pbs.twimg.com/media/CucmvIAVMAA4kGx?format=jpg&name=medium",
+  "https://pbs.twimg.com/media/CuSeZ1OUEAARgHa?format=jpg&name=small",
+  "https://pbs.twimg.com/media/CtutnEaUsAAAPxU?format=jpg&name=small",
+  "https://pbs.twimg.com/media/Cs6l7asUkAQWwRT?format=jpg&name=small",
+  "https://pbs.twimg.com/media/Cvrfpv9UsAAPM0J?format=jpg&name=small",
+  "https://pbs.twimg.com/media/CwJlN9qVIAAaFRE?format=jpg&name=small",
+  "https://pbs.twimg.com/media/CwJhMp1VUAAf2YS?format=jpg&name=900x900",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNXNz3RiOQmZZ9hyXnQcYtnAU6Si_-iG1-81sRCtkao-9Gyw59wWuKpmHEC1jPAemLLx4&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW3IPc69ylZR7r2KmJoblPYlnjzAfJqGErF4r--04YIAjTBzaT7x2S6sH9JBLoW5tCk3s&usqp=CAU",
+  "https://risibank.fr/cache/medias/0/4/454/45490/full.jpeg",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAKNTSaHgIcG5P4_GZu5L_Xq_5j3cV64r3mHm2iYNHhm68bK6iOwKm0nJ6KY-2szWL4-o&usqp=CAU",
+  "https://pbs.twimg.com/media/EjTN8yQUYAARKDE.jpg",
+  "https://video-images.vice.com/articles/5f774a0cb3ae06009c544492/lede/1601653988630-teletubbies.jpeg?crop=1xw:0.7471xh;0xw,0.1729xh&resize=1200:*",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSerCLjck7ITM3w6eYrEdbDMCuVhUkpIL1hc00gP9noEA&s",
+  "https://i.etsystatic.com/11975888/r/il/2599d9/1705255845/il_fullxfull.1705255845_ivjf.jpg",
+  "https://images.squarespace-cdn.com/content/v1/564cac40e4b0fa2130e45e5e/1575482219902-JS4IHKA7042J0374JBXN/f49489f3-5124-4cf4-b4d4-50ec4af7cf0a.jpg",
+  "https://i.pinimg.com/736x/c6/64/bd/c664bde84e5064766b35bbc3afd75a36.jpg"
+]
