@@ -14,15 +14,18 @@
 
     {/if}
     <p1><b>Custom message:</b></p1> <input class="text-[--theme-white] h-10 translucent" bind:value={$custom_msg} placeholder="enter your custom message, displayed at the first line the message." />
-  <button class="bg-[--theme-white] hover:bg-[--theme-black] hover:text-[--theme-white] text-[--theme-black] font-bold p-14 rounded" on:click={() => {paused = !paused}}>{paused ? "Resume" : "Pause"}</button>
+  <button class="p-2 bg-[--theme-white] hover:bg-[--theme-black] hover:text-[--theme-white] text-[--theme-black] font-bold rounded" on:click={() => {paused = !paused}}>{paused ? "Resume" : "Pause"}</button>
   <div class="flex items-center text-center align-middle self-center p-2 rounded-md 
               {bg_status}">
     <p1><b>Status: </b>{paused ? "Paused" : curr_status}</p1>
   </div>
   <!-- svelte-ignore a11y-missing-attribute -->
-  <img src={photo} sizes="">
+  <img src={photo}>
+  <p1><b>URL: </b><a href={url} target="_blank" class="px-2 py-1 bg-slate-500 rounded-lg hover:bg-slate-400 font-bold">{url_clean}</a></p1>
+  <!-- svelte-ignore a11y-missing-content -->
+  <p1><b>Target bot: </b><a href="https://t.me/{bot_name}" target="_blank" class="text-blue-300 underline">{bot_name} (ID: {bot_id})</a></p1>
+  <p1><b>Target name:</b> {target_name} (ID: {target_id})</p1>
   <p1><b>Iteration:</b> {iteration}</p1>
-  <p1><b>URL:</b> {url_clean}</p1>
   <p1><b>Message:</b> {msg}</p1>
 </div>
 
@@ -38,28 +41,38 @@ const cursed_arr = cursed_text
 const cursed_length = 100
 const status = {SUCCESS: "Success", FAILED: "Retrying..."}
 
+let bot_id = ""
+let bot_name = ""
+let target_name = ""
+let target_id = ""
 let bg_status = ""
-let interval = 1000
-let speed_clicked = false
 let photo = ""
-let paused = true
 let msg = ""
-let iteration = 0
+let url = ""
 let url_clean = ""
 let curr_status = "Connecting..."
+let interval = 1000
+let speed_clicked = false
+let paused = true
+let iteration = 0
 
 function send_msg() {
   var rand_i = Math.floor(Math.random() * cursed_images.length)
   photo = cursed_images[rand_i]
 
   url_clean = `https://api.telegram.org/bot${$token}/getMe`
-  const url = `https://api.telegram.org/bot${$token}/sendPhoto?chat_id=${$chat_id}&photo=${photo}&caption=${$custom_msg}%0A${msg}`
+  url = `https://api.telegram.org/bot${$token}/sendPhoto?chat_id=${$chat_id}&photo=${photo}&caption=${$custom_msg}%0A${msg}`
   
   axios.get(url)
     .then((res) => {
       if (res.status === 200){
         if (paused === false) bg_status ="bg-[--theme-green]"
         curr_status = status.SUCCESS
+        target_name = res.data.result.chat.first_name + " " + res.data.result.chat.last_name
+        target_id = res.data.result.chat.id
+
+        bot_name = res.data.result.from.username
+        bot_id = res.data.result.from.id
       }
     })
     .catch((res) => {
@@ -127,10 +140,7 @@ $:{
     width: 250px;
     height: 250px;
   }
-  .main button{
-    width: 100px;
-    padding: 3px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  .main button {
+    @apply w-24
   }
 </style>
