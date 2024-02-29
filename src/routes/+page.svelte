@@ -1,8 +1,8 @@
 <div class="main gap-3">
   <h1>Spammer</h1>
 
-  <p1><b>Token:</b></p1> <input class="text-[--theme-white] h-10 translucent" bind:value={$token} placeholder="enter your token" />
-  <p1><b>Chat ID:</b></p1> <input class="text-[--theme-white] h-10 translucent" bind:value={$chat_id} placeholder="enter your chat_id" />
+  <p1><b>Token:</b></p1> <input class="text-[--theme-white] h-10 translucent" bind:value={$token} placeholder="Example: 6787834603:AAHErySM44OnatbhBcomde2emS6mU7oay0g" />
+  <p1><b>Chat ID:</b></p1> <input class="text-[--theme-white] h-10 translucent" bind:value={$chat_id} placeholder="Example: 924181004" />
   <p1><b>Interval:</b></p1> <button class="bg-[--theme-white] hover:bg-[--theme-black] hover:text-[--theme-white] text-[--theme-black] font-bold py-2 px-4 rounded" on:click={() => {speed_clicked = !speed_clicked}}>{interval + "ms"}</button>
     {#if (speed_clicked === true)}
       <button class="bg-[--theme-blue] hover:bg-[--theme-black] hover:text-[--theme-white] text-[--theme-black] font-bold py-2 px-4 rounded" on:click={() => {interval = 3000; speed_clicked = false}}>3000ms</button>
@@ -13,7 +13,7 @@
       <button class="bg-[--theme-blue] hover:bg-[--theme-black] hover:text-[--theme-white] text-[--theme-black] font-bold py-2 px-4 rounded" on:click={() => {interval = 10; speed_clicked = false}}>10ms</button>
 
     {/if}
-    <p1><b>Custom message:</b></p1> <input class="text-[--theme-white] h-10 translucent" bind:value={$custom_msg} placeholder="enter your custom message, displayed at the first line the message." />
+    <p1><b>Custom message:</b></p1> <input class="text-[--theme-white] h-10 translucent" bind:value={$custom_msg} placeholder="Displayed at the first line the message. Example: t.me/conts" />
   <button class="p-2 bg-[--theme-white] hover:bg-[--theme-black] hover:text-[--theme-white] text-[--theme-black] font-bold rounded" on:click={() => {paused = !paused}}>{paused ? "Resume" : "Pause"}</button>
   <div class="flex items-center text-center align-middle self-center p-2 rounded-md 
               {bg_status}">
@@ -25,7 +25,8 @@
   <!-- svelte-ignore a11y-missing-content -->
   <p1><b>Target bot: </b><a href="https://t.me/{bot_name}" target="_blank" class="text-blue-300 underline">{bot_name} (ID: {bot_id})</a></p1>
   <p1><b>Target name:</b> {target_name} (ID: {target_id})</p1>
-  <p1><b>Iteration:</b> {iteration}</p1>
+  <p1><b>Tries:</b> {msg_try}</p1>
+  <p1><b>Message sent:</b> {sent}</p1>
   <p1><b>Message:</b> {msg}</p1>
 </div>
 
@@ -54,7 +55,8 @@ let curr_status = "Connecting..."
 let interval = 1000
 let speed_clicked = false
 let paused = true
-let iteration = 0
+let msg_try = 0
+let sent = 0
 
 function send_msg() {
   var rand_i = Math.floor(Math.random() * cursed_images.length)
@@ -73,6 +75,8 @@ function send_msg() {
 
         bot_name = res.data.result.from.username
         bot_id = res.data.result.from.id
+        
+        sent += 1
       }
     })
     .catch((res) => {
@@ -107,7 +111,7 @@ function send_msg() {
 function send(){
   if (paused === true) return
   send_msg()
-  iteration += 1
+  msg_try += 1
   if (curr_status !== status.SUCCESS) return
   if (msg.length > cursed_length){
       msg = ""
