@@ -95,6 +95,11 @@ function send_msg() {
         return
       }
 
+      if (res.message.includes("429")){
+        curr_status += "target overloaded due to too many requsts. Retrying..."
+        return
+      }
+
       curr_status += status.FAILED
     })
 }
