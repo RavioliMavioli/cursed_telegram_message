@@ -1,7 +1,7 @@
 {
-	"name": "spam",
-	"version": "0.0.1",
-	"private": true,
+	"name": "cursed-message-spammer",
+	"version": "1.0.0",
+	"private": false,
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
